@@ -22,16 +22,126 @@
     <!-- <link rel="stylesheet" media="screen and (max-width: X px)" href="name.css"> -->
 
     <title>Bate-Papo UOL</title>
-    <link rel="shortcut icon" href="./assets/favicon-logo.ico" type="image/x-icon">
-    <link rel="icon" href="./assets/favicon-logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/logo-batepapo-uol.png" type="image/x-icon">
+    <link rel="icon" href="./assets/logo-batepapo-uol.png" type="image/x-icon">
 </head>
 
 <body>
     
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <header>
+        <div>
+            <img src="./assets/logo-batepapo-uol.png" alt="Logo Bate-Papo UOL">
+            <ion-icon name="people"></ion-icon>
+        </div>
+    </header>
 
+    <main>
+        <!-- Fluxo de mensagens na página -->
+        <nav>
+            
+            <div class="mensagem-exibida status">
+                <p><small>(09:21:45)</small><strong>João</strong><span>entra na sala...</span></p>
+            </div>
+            <div class="mensagem-exibida">
+                <p><small>(09:22:28)</small><strong>João</strong><span>para</span><strong>Todos:</strong><span>Bom dia</span></p>
+            </div>
+            <div class="mensagem-exibida">
+                <p><small>(09:22:38)</small><strong>Maria</strong><span>para</span><strong>João:</strong><span>Oi João :)</span></p>
+            </div>
+            <div class="mensagem-exibida reservadamente">
+                <p><small>(09:22:48)</small><strong>João</strong><span>reservadamente</span><strong>Maria:</strong><span>Oi gatinha quer tc?</span></p>
+            </div>
+            <div class="mensagem-exibida status">
+                <p><small>(09:22:58)</small><strong>Maria</strong><span>sai da sala...</span></p>
+            </div>
+        
+        </nav>
+    
+    </main>
+    
+    <article class="tela-participantes escondido">
+        
+        <section class="usuarios-disponiveis">
+            
+            <div class="topo-participante">
+                <p >Escolha um contato para enviar mensagem:</p>
+            </div>
+            
+            <div class="todos-participantes">
+                <div class="perfil-participantes flex">
+                    <ion-icon name="people"></ion-icon>
+                    <p>Todos</p>
+                </div>
+                <div class="check escondido">
+                    <img src="./assets/vector-checkmark.svg" alt="Vector Check">
+                </div>
+            </div>
+            
+            <div class="opcao-participantes">
+                <div class="perfil-participantes flex">
+                    <ion-icon name="person-circle"></ion-icon>
+                    <p>João</p>
+                </div>
+                <div class="check escondido">
+                    <img src="./assets/vector-checkmark.svg" alt="Vector Check">
+                </div>
+            </div>
+
+            <div class="opcao-participantes">
+                <div class="perfil-participantes flex">
+                    <ion-icon name="person-circle"></ion-icon>
+                    <p>Maria</p>
+                </div>
+                <div class="check">
+                    <img src="./assets/vector-checkmark.svg" alt="Vector Check">
+                </div>
+            </div>
+        
+        </section>
+   
+        <section class="visibilidade-mensagem">
+
+            <div class="topo-visibilidade">
+                <p >Escolha a visibilidade:</p>
+            </div>
+
+            <div class="visibilidade-publico">
+                <div class="opcao-mensagem flex">
+                    <img src="./assets/vector-public.svg" alt="Vector Público">
+                    <p>Público</p>
+                </div>
+                <div class="check escondido">
+                    <img src="./assets/vector-checkmark.svg" alt="Vector Check">
+                </div>
+            </div>
+
+            <div class="visibilidade-reservadamente">
+                <div class="opcao-mensagem flex">
+                    <img src="./assets/vector-particular.svg" alt="Vector Reservadamente">
+                    <p>Reservadamente</p>
+                </div>
+                <div class="check">
+                    <img src="./assets/vector-checkmark.svg" alt="Vector Check">
+                </div>
+            </div>
+
+        </section>
+
+    </article>
+    
+    <footer>
+        <div class="mensagem-reservadamente">
+            <input type="text" name="nome" placeholder="Escreva aqui...">
+            <p class="escondido"> Enviando para Maria (reservadamente)</p>
+        </div>
+        <div>
+            <ion-icon name="paper-plane-outline"></ion-icon>
+        </div>
+    </footer>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
 </body>
