@@ -249,6 +249,68 @@ footer div ion-icon{
     padding-right: 17px;
 }
 
+/* ESTILIZAÇÃO TELA DE ENTRADA */
+.tela-de-entrada{
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--header-footer)
+}
+
+.tela-de-entrada section{
+    width: 80vw;
+    height: 50vh;
+    margin: 0 auto;
+    margin-top: 130px;
+}
+
+.tela-de-entrada figure{
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tela-de-entrada figure img{
+    width: 130px;
+    height: 92px;
+}
+
+.tela-de-entrada .entrada-usuario{
+    margin-top: 80px;
+}
+
+.entrada-usuario input{
+    width: 261px;
+    height: 54px;
+    border-radius: 4px;
+    border: 1px solid rgba(215, 215, 215, 1);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 25px;
+    text-align: center;
+    color: rgba(174, 174, 174, 1);
+}
+
+.tela-de-entrada .botao-entrada {
+    margin-top: 20px;
+}
+
+.botao-entrada button{
+    width: 109px;
+    height: 45px;
+    border-radius: 9px;
+    background: rgba(231, 231, 231, 1);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 25px;
+    text-align: center;
+    color: rgba(105, 105, 105, 1);
+}
+
 /* CLASSES GERAIS DE MANIPULAÇÃO */
 .escondido{
     display: none;
