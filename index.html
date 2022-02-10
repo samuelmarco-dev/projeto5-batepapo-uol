@@ -32,7 +32,7 @@
     <header>
         <div>
             <img src="./assets/logo-batepapo-uol.png" alt="Logo Bate-Papo UOL">
-            <ion-icon name="people"></ion-icon>
+            <ion-icon onclick="telaParticipantesAtivos()" name="people"></ion-icon>
         </div>
     </header>
 
@@ -68,7 +68,7 @@
                 <p >Escolha um contato para enviar mensagem:</p>
             </div>
             
-            <div class="todos-participantes">
+            <div class="todos-participantes" onclick="selecionarParticipante(this)">
                 <div class="perfil-participantes flex">
                     <ion-icon name="people"></ion-icon>
                     <p>Todos</p>
@@ -78,7 +78,7 @@
                 </div>
             </div>
             
-            <div class="opcao-participantes">
+            <div class="todos-participantes opcao-participantes" onclick="selecionarParticipante(this)">
                 <div class="perfil-participantes flex">
                     <ion-icon name="person-circle"></ion-icon>
                     <p>João</p>
@@ -88,12 +88,12 @@
                 </div>
             </div>
 
-            <div class="opcao-participantes">
+            <div class="todos-participantes opcao-participantes" onclick="selecionarParticipante(this)">
                 <div class="perfil-participantes flex">
                     <ion-icon name="person-circle"></ion-icon>
                     <p>Maria</p>
                 </div>
-                <div class="check">
+                <div class="check escondido">
                     <img src="./assets/vector-checkmark.svg" alt="Vector Check">
                 </div>
             </div>
@@ -128,6 +128,13 @@
 
         </section>
 
+        <section class="sair-tela-participantes">
+            <div>
+                <h1 class="flex" onclick="sairDaTela()"><p>Deseja Sair?</p></h1>
+                <ion-icon onclick="sairDaTela()" name="exit-outline"></ion-icon>
+            </div>
+        </section>
+
     </article>
     
     <article class="tela-de-entrada escondido">
@@ -143,7 +150,7 @@
             </div>
            
             <div class="botao-entrada flex">
-                <button>Entrar</button> 
+                <button onclick="entradarNaSala(this)">Entrar</button> 
             </div>
        
         </section>
@@ -159,11 +166,12 @@
             <ion-icon name="paper-plane-outline"></ion-icon>
         </div>
     </footer>
-
+    
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
