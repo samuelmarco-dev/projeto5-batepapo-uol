@@ -40,7 +40,7 @@
         <!-- Fluxo de mensagens na página -->
         <nav>
 
-            <div class="mensagem-exibida status">
+            <!-- <div class="mensagem-exibida status">
                 <p><small>(09:21:45)</small><strong>João</strong><span>entra na sala...</span></p>
             </div>
             <div class="mensagem-exibida">
@@ -57,7 +57,7 @@
             </div>
             <div class="mensagem-exibida status">
                 <p><small>(09:22:58)</small><strong>Maria</strong><span>sai da sala...</span></p>
-            </div>
+            </div> -->
 
         </nav>
 
@@ -71,7 +71,7 @@
                 <p>Escolha um contato para enviar mensagem:</p>
             </div>
 
-            <div class="todos-participantes" onclick="selecionarParticipante(this)">
+            <div class="todos-participantes">
                 <div class="perfil-participantes flex">
                     <ion-icon name="people"></ion-icon>
                     <p>Todos</p>
@@ -81,7 +81,7 @@
                 </div>
             </div>
 
-            <div class="todos-participantes opcao-participantes" onclick="selecionarParticipante(this)">
+            <div class="todos-participantes opcao-participantes">
                 <div class="perfil-participantes flex">
                     <ion-icon name="person-circle"></ion-icon>
                     <p>João</p>
@@ -91,7 +91,7 @@
                 </div>
             </div>
 
-            <div class="todos-participantes opcao-participantes" onclick="selecionarParticipante(this)">
+            <div class="todos-participantes opcao-participantes">
                 <div class="perfil-participantes flex">
                     <ion-icon name="person-circle"></ion-icon>
                     <p>Maria</p>
@@ -167,7 +167,7 @@
             <input type="text" name="nome" placeholder="Escreva aqui...">
             <p class="escondido"> Enviando para Maria (reservadamente)</p>
         </div>
-        <div onclick="enviarMensagemAPI()">
+        <div onclick="enviarMensagemAPI()" data-identifier="send-message">
             <ion-icon name="paper-plane-outline"></ion-icon>
         </div>
     </footer>

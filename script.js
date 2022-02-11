@@ -1,6 +1,7 @@
 let nomeDeUsuario;
 let objectoNickName;
 let objectoOnline;
+let objetoMensagemInput;
 
 /* FUNÇÕES DE MANIPULAÇÃO DE TELA (INTERAÇÃO DO USUÁRIO) */
 function entradarNaSala(elementoBotao) {
@@ -93,7 +94,7 @@ function buscarMensagens() {
     //     buscarMensagens();
     // });
 }
-setTimeout(buscarMensagens, 2500);
+setTimeout(buscarMensagens, 2400);
 
 // Recarrega as mensagens disponíveis na API a cada 3 segundos
 setInterval(buscarMensagens, 3000);
@@ -103,24 +104,25 @@ function renderizarMensagensNaTela(mensagemAPI) {
     console.log(areaDeMensagens);
     console.log(mensagemAPI.length);
     console.log(nomeDeUsuario);
+    areaDeMensagens.innerHTML = "";
 
     for (let index = 0; index < mensagemAPI.length; index++) {
         const arrayMensagens = mensagemAPI[index];
         if (arrayMensagens.type === 'status') {
             areaDeMensagens.innerHTML += `
-            <div class="mensagem-exibida status">
+            <div class="mensagem-exibida status" data-identifier="message">
                 <p><small>(${arrayMensagens.time})</small><strong>${arrayMensagens.from}</strong><span>${arrayMensagens.text}</span></p>             
             </div>`;
         }
         if (arrayMensagens.type === 'message') {
             areaDeMensagens.innerHTML += `
-            <div class="mensagem-exibida">
+            <div class="mensagem-exibida" data-identifier="message">
                 <p><small>(${arrayMensagens.time})</small><strong>${arrayMensagens.from}</strong><span>para</span><strong>${arrayMensagens.to}:</strong><span>${arrayMensagens.text}</span></p>
             </div>`;
         }
         if (arrayMensagens.type === 'private_message' && arrayMensagens.to === nomeDeUsuario) {
             areaDeMensagens.innerHTML += `
-            <div class="mensagem-exibida reservadamente">
+            <div class="mensagem-exibida reservadamente" data-identifier="message">
                 <p><small>(${arrayMensagens.time})</small><strong>${arrayMensagens.from}</strong><span>reservadamente</span><strong>${arrayMensagens.to}:</strong><span>${arrayMensagens.text}</span></p>
             </div>`;
         }
@@ -138,7 +140,7 @@ function enviarMensagemAPI() {
     console.log(nomeDeUsuario, mensagemDigitada.value);
     const tipoDeMensagem = "Todos";
     const urlEnivarMensagem = "https://mock-api.driven.com.br/api/v4/uol/messages";
-    const objetoMensagemInput = {
+    objetoMensagemInput = {
         from: `${nomeDeUsuario}`,
         to: `${tipoDeMensagem}`,
         text: `${mensagemDigitada.value}`,
