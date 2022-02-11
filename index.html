@@ -31,7 +31,7 @@
     
     <header>
         <div>
-            <img src="./assets/logo-batepapo-uol.png" alt="Logo Bate-Papo UOL">
+            <a href="#" target="_blank"><img src="./assets/logo-batepapo-uol.png" alt="Logo Bate-Papo UOL"></a>
             <ion-icon onclick="telaParticipantesAtivos()" name="people"></ion-icon>
         </div>
     </header>
@@ -137,7 +137,7 @@
 
     </article>
     
-    <article class="tela-de-entrada escondido">
+    <article class="tela-de-entrada">
         
         <section>
             
@@ -146,7 +146,7 @@
             </figure>
 
             <div class="entrada-usuario flex">
-                <input type="text" name="nome" placeholder="Digite seu nome">
+                <!-- <input type="text" name="nome" placeholder="Digite seu nome"> -->
             </div>
            
             <div class="botao-entrada flex">
@@ -162,7 +162,7 @@
             <input type="text" name="nome" placeholder="Escreva aqui...">
             <p class="escondido"> Enviando para Maria (reservadamente)</p>
         </div>
-        <div>
+        <div onclick="enviarMensagemAPI()">
             <ion-icon name="paper-plane-outline"></ion-icon>
         </div>
     </footer>
@@ -170,8 +170,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="main.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
