@@ -41,6 +41,10 @@ function enviarNickname(){
     };
     objectoOnline = objectoNickName;
 
+    if(nomeDeUsuario === null || nomeDeUsuario === undefined){
+        enviarNickname()
+    }
+
     const urlEnviarNickname = "https://mock-api.driven.com.br/api/v4/uol/participants";
     axios.post(urlEnviarNickname, objectoNickName)
     .then((response)=>{
@@ -49,7 +53,7 @@ function enviarNickname(){
     })
     .catch((error)=>{
         console.log(error.response);
-        alert("Insira outro nome de usuário, o mesmo já está em uso!");
+        alert("Insira outro nome de usuário, este nome não é válido ou já está em uso!");
         enviarNickname();
     })
 }
@@ -77,56 +81,62 @@ setTimeout(usuarioEstaOnline, 2000);
 // Informar a cada 5 segundos na API se o usuário está online
 setInterval(usuarioEstaOnline, 5000);
 
-// function buscarMensagens(){
-//     const urlBuscarMensagens = "https://mock-api.driven.com.br/api/v4/uol/messages";
-//     axios.get(urlBuscarMensagens)
-//     .then((response)=>{
-//         console.log(response.data);
-//         setTimeout(renderizarMensagensNaTela(response.data));
-//     })
-//     .catch((error)=>{
-//         console.log(error);
-//     });
-// }
-// buscarMensagens();
+function buscarMensagens(){
+    const urlBuscarMensagens = "https://mock-api.driven.com.br/api/v4/uol/messages";
+    axios.get(urlBuscarMensagens)
+    .then((response)=>{
+        console.log(response.data);
+        renderizarMensagensNaTela(response.data);
+    })
+    // .catch((error)=>{
+    //     console.log(error);
+    //     buscarMensagens();
+    // });
+}
+setTimeout(buscarMensagens, 2500);
 
-// // // Recarrega as mensagens disponíveis na API a cada 3 segundos
-// setInterval(buscarMensagens, 3000);
+// Recarrega as mensagens disponíveis na API a cada 3 segundos
+setInterval(buscarMensagens, 3000);
 
-// function renderizarMensagensNaTela(mensagemAPI){
-//     const areaDeMensagens = document.querySelector('nav');
-    
-//     console.log(areaDeMensagens);
-//     console.log(mensagemAPI.length);    
-//     for(let index = 0; index < mensagemAPI.length; index++){
-//         const arrayMensagens = mensagemAPI[index];
-//         if(arrayMensagens.type === 'status'){
-//             areaDeMensagens.innerHTML += `
-//             <div class="mensagem-exibida status">
-//                 <p><small>(${arrayMensagens.time})</small><strong>${arrayMensagens.from}</strong><span>${arrayMensagens.text}</span></p>             
-//             </div>`;
-//         }
-//         if(arrayMensagens.type === 'message'){
-//             areaDeMensagens.innerHTML += `
-//             <div class="mensagem-exibida">
-//                 <p><small>(${arrayMensagens.time})</small><strong>${arrayMensagens.from}</strong><span>para</span><strong>${arrayMensagens.to}:</strong><span>${arrayMensagens.text}</span></p>
-//             </div>`;
-//         }
-        // if(arrayMensagens.type === 'private_message'){
-        //     areaDeMensagens.innerHTML += `
-        //     <div class="mensagem-exibida reservadamente">
-        //         <p><small>(${arrayMensagens.time})</small><strong>${arrayMensagens.from}</strong><span>reservadamente</span><strong>${arrayMensagens.to}:</strong><span>${arrayMensagens.text}</span></p>
-        //     </div>`;
-        // }
-    // }
-    // const scrollMensagens = document.querySelector('nav');
-    // scrollMensagens.lastElementChild.scrollIntoView()
-//}
+function renderizarMensagensNaTela(mensagemAPI){
+    const areaDeMensagens = document.querySelector('nav');
+    console.log(areaDeMensagens);
+    console.log(mensagemAPI.length);  
+    console.log(nomeDeUsuario);
+
+    for(let index = 0; index < mensagemAPI.length; index++){
+        const arrayMensagens = mensagemAPI[index];
+        if(arrayMensagens.type === 'status'){
+            areaDeMensagens.innerHTML += `
+            <div class="mensagem-exibida status">
+                <p><small>(${arrayMensagens.time})</small><strong>${arrayMensagens.from}</strong><span>${arrayMensagens.text}</span></p>             
+            </div>`;
+        }
+        if(arrayMensagens.type === 'message'){
+            areaDeMensagens.innerHTML += `
+            <div class="mensagem-exibida">
+                <p><small>(${arrayMensagens.time})</small><strong>${arrayMensagens.from}</strong><span>para</span><strong>${arrayMensagens.to}:</strong><span>${arrayMensagens.text}</span></p>
+            </div>`;
+        }
+        if(arrayMensagens.type === 'private_message' && arrayMensagens.to === nomeDeUsuario){
+            areaDeMensagens.innerHTML += `
+            <div class="mensagem-exibida reservadamente">
+                <p><small>(${arrayMensagens.time})</small><strong>${arrayMensagens.from}</strong><span>reservadamente</span><strong>${arrayMensagens.to}:</strong><span>${arrayMensagens.text}</span></p>
+            </div>`;
+        }
+    }
+    scrollBatePapo();
+}
+
+function scrollBatePapo(){
+    const scrollMensagens = document.querySelector('nav');
+    scrollMensagens.lastElementChild.scrollIntoView();
+}
 
 function enviarMensagemAPI(){
     const mensagemDigitada = document.querySelector('.mensagem-reservadamente input');
     console.log(nomeDeUsuario, mensagemDigitada.value);
-    const tipoDeMensagem = "Todos"
+    const tipoDeMensagem = "Todos";
     const urlEnivarMensagem = "https://mock-api.driven.com.br/api/v4/uol/messages";
     const objetoMensagemInput = {
         from: `${nomeDeUsuario}`,
@@ -138,7 +148,7 @@ function enviarMensagemAPI(){
     .then((response)=>{
         console.log(response.data);
          limparInputDoUsuario();
-         alert(objetoMensagemInput);
+        //  alert(objetoMensagemInput);
         //  buscarMensagens();
     })
     .catch((error)=>{
