@@ -30,37 +30,13 @@
 <body>
 
     <header>
-        <div>
             <a href="#" target="_blank"><img src="./assets/logo-batepapo-uol.png" alt="Logo Bate-Papo UOL"></a>
             <ion-icon onclick="telaParticipantesAtivos()" name="people"></ion-icon>
-        </div>
     </header>
 
     <main>
-        <!-- Fluxo de mensagens na página -->
         <nav>
-
-            <!-- <div class="mensagem-exibida status">
-                <p><small>(09:21:45)</small><strong>João</strong><span>entra na sala...</span></p>
-            </div>
-            <div class="mensagem-exibida">
-                <p><small>(09:22:28)</small><strong>João</strong><span>para</span><strong>Todos:</strong><span>Bom
-                        dia</span></p>
-            </div>
-            <div class="mensagem-exibida">
-                <p><small>(09:22:38)</small><strong>Maria</strong><span>para</span><strong>João:</strong><span>Oi João
-                        :)</span></p>
-            </div>
-            <div class="mensagem-exibida reservadamente">
-                <p><small>(09:22:48)</small><strong>João</strong><span>reservadamente</span><strong>Maria:</strong><span>Oi
-                        gatinha quer tc?</span></p>
-            </div>
-            <div class="mensagem-exibida status">
-                <p><small>(09:22:58)</small><strong>Maria</strong><span>sai da sala...</span></p>
-            </div> -->
-
         </nav>
-
     </main>
 
     <article class="tela-participantes escondido">
@@ -71,35 +47,17 @@
                 <p>Escolha um contato para enviar mensagem:</p>
             </div>
 
-            <div class="todos-participantes">
+            <div class="todos-participantes selecionado" onclick="selecionarParticipante(this)">
                 <div class="perfil-participantes flex">
                     <ion-icon name="people"></ion-icon>
                     <p>Todos</p>
                 </div>
-                <div class="check escondido">
+                <div class="check opacidade">
                     <img src="./assets/vector-checkmark.svg" alt="Vector Check">
                 </div>
             </div>
-
-            <div class="todos-participantes opcao-participantes">
-                <div class="perfil-participantes flex">
-                    <ion-icon name="person-circle"></ion-icon>
-                    <p>João</p>
-                </div>
-                <div class="check escondido">
-                    <img src="./assets/vector-checkmark.svg" alt="Vector Check">
-                </div>
-            </div>
-
-            <div class="todos-participantes opcao-participantes">
-                <div class="perfil-participantes flex">
-                    <ion-icon name="person-circle"></ion-icon>
-                    <p>Maria</p>
-                </div>
-                <div class="check escondido">
-                    <img src="./assets/vector-checkmark.svg" alt="Vector Check">
-                </div>
-            </div>
+            
+            <div class="participates-renderizados"></div>
 
         </section>
 
@@ -109,22 +67,22 @@
                 <p>Escolha a visibilidade:</p>
             </div>
 
-            <div class="visibilidade-publico">
+            <div class="visibilidade-publico mensagem selecionado" onclick="selecionarTipoMensagem(this)">
                 <div class="opcao-mensagem flex">
                     <img src="./assets/vector-public.svg" alt="Vector Público">
                     <p>Público</p>
                 </div>
-                <div class="check escondido">
+                <div class="check opacidade">
                     <img src="./assets/vector-checkmark.svg" alt="Vector Check">
                 </div>
             </div>
 
-            <div class="visibilidade-reservadamente">
+            <div class="visibilidade-reservadamente mensagem" onclick="selecionarTipoMensagem(this)">
                 <div class="opcao-mensagem flex">
                     <img src="./assets/vector-particular.svg" alt="Vector Reservadamente">
                     <p>Reservadamente</p>
                 </div>
-                <div class="check">
+                <div class="check opacidade">
                     <img src="./assets/vector-checkmark.svg" alt="Vector Check">
                 </div>
             </div>
@@ -165,7 +123,7 @@
     <footer>
         <div class="mensagem-reservadamente">
             <input type="text" name="nome" placeholder="Escreva aqui...">
-            <p class="escondido"> Enviando para Maria (reservadamente)</p>
+            <p> Enviando para Todos (Público)</p>
         </div>
         <div onclick="enviarMensagemAPI()" data-identifier="send-message">
             <ion-icon name="paper-plane-outline"></ion-icon>

@@ -19,19 +19,23 @@ function sairDaTela() {
     iconeSaida.classList.add('escondido');
 }
 
-// function selecionarParticipante(participanteEscolhido){
-//     const teste = participanteEscolhido.querySelector('.check');
-//     const apagarIcone = participanteEscolhido.children[1]
-//     console.log(teste, participanteEscolhido, participanteEscolhido.children, apagarIcone);
+function selecionarParticipante(participanteEscolhido) {
+    const selecionado = document.querySelector('.usuarios-disponiveis .selecionado');
 
-//     if(teste.classList.contains('escondido') === true){
-//         teste.classList.remove('escondido');
-//     }
-//     else if(apagarIcone.classList.contains('escondido') === false){
-//         apagarIcone.classList.add('escondido');
-//     }
+    if (selecionado !== null) {
+        selecionado.classList.remove('selecionado')
+    }
+    participanteEscolhido.classList.add('selecionado')
+}
 
-// }
+function selecionarTipoMensagem(tipoDeMensagem) {
+    const selecionado = document.querySelector('.visibilidade-mensagem .selecionado');
+
+    if (selecionado !== null) {
+        selecionado.classList.remove('selecionado')
+    }
+    tipoDeMensagem.classList.add('selecionado')
+}
 
 /* FUNÇÕES DE TRATAMENTO DE PROMISES DO AXIOS */
 
@@ -94,13 +98,13 @@ function buscarMensagens() {
     //     buscarMensagens();
     // });
 }
-setTimeout(buscarMensagens, 2400);
+buscarMensagens();
 
 // Recarrega as mensagens disponíveis na API a cada 3 segundos
 setInterval(buscarMensagens, 3000);
 
 function renderizarMensagensNaTela(mensagemAPI) {
-    const areaDeMensagens = document.querySelector('nav');
+    const areaDeMensagens = document.querySelector('main nav');
     console.log(areaDeMensagens);
     console.log(mensagemAPI.length);
     console.log(nomeDeUsuario);
@@ -108,6 +112,7 @@ function renderizarMensagensNaTela(mensagemAPI) {
 
     for (let index = 0; index < mensagemAPI.length; index++) {
         const arrayMensagens = mensagemAPI[index];
+
         if (arrayMensagens.type === 'status') {
             areaDeMensagens.innerHTML += `
             <div class="mensagem-exibida status" data-identifier="message">
@@ -135,17 +140,59 @@ function scrollBatePapo() {
     scrollMensagens.lastElementChild.scrollIntoView();
 }
 
+function buscarParticipantesAtivos() {
+    const urlParticipantesAtivos = 'https://mock-api.driven.com.br/api/v4/uol/participants';
+    axios.get(urlParticipantesAtivos)
+        .then((response) => {
+            console.log(response.data);
+            renderizarParticipantesAtivos(response.data);
+        })
+        // .catch((error) => {
+        //     console.log(error.response);
+        // })
+}
+setTimeout(buscarParticipantesAtivos, 2500);
+
+// Buscar lista de participantes ativos a cada 10 segundos
+setInterval(buscarParticipantesAtivos, 10000);
+
+function renderizarParticipantesAtivos(arrayDeParticipantes) {
+    const participantesDisponiveis = document.querySelector('.tela-participantes .usuarios-disponiveis .participates-renderizados');
+    participantesDisponiveis.innerHTML = "";
+
+    for (let index = 0; index < arrayDeParticipantes.length; index++) {
+        const elementoRenderizado = arrayDeParticipantes[index]
+        participantesDisponiveis.innerHTML += `
+<div class="todos-participantes" onclick="selecionarParticipante(this)">
+            <div class="perfil-participantes flex">
+                <ion-icon name="people"></ion-icon>
+                <p>${elementoRenderizado.name}</p>
+            </div>
+            <div class="check opacidade">
+                <img src="./assets/vector-checkmark.svg" alt="Vector Check">
+            </div>
+         </div>
+        `
+        if(elementoRenderizado.name === arrayDeParticipantes[index]){
+            participantesDisponiveis.innerHTML = "";
+        }
+    }
+}
+
 function enviarMensagemAPI() {
     const mensagemDigitada = document.querySelector('.mensagem-reservadamente input');
+    const destinoDaMensagem = 'Todos';
+    const tipoDaMensagem = 'message';
+
     console.log(nomeDeUsuario, mensagemDigitada.value);
-    const tipoDeMensagem = "Todos";
     const urlEnivarMensagem = "https://mock-api.driven.com.br/api/v4/uol/messages";
     objetoMensagemInput = {
         from: `${nomeDeUsuario}`,
-        to: `${tipoDeMensagem}`,
+        to: `${destinoDaMensagem}`,
         text: `${mensagemDigitada.value}`,
-        type: "message"
+        type: `${tipoDaMensagem}`
     };
+    console.log(objetoMensagemInput);
     axios.post(urlEnivarMensagem, objetoMensagemInput)
         .then((response) => {
             console.log(response.data);
@@ -154,6 +201,9 @@ function enviarMensagemAPI() {
         })
         .catch((error) => {
             console.log(error.response);
+            if (objetoMensagemInput.text === "" || objetoMensagemInput.text === null) {
+                alert('O servidor não aceita o envio de mensagens vazias. Você será redirecionado para a tela inicial');
+            }
             location.reload(true);
         })
 }

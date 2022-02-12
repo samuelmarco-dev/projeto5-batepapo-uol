@@ -17,24 +17,19 @@ header{
     top: 0;
     left: 0;
     box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.15);
-}
-
-header div{
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-header div img{
+header img{
     width: 75px;
     height: 53px;
     margin-left: 22px;
     cursor: pointer;
 }
 
-header div ion-icon{
+header ion-icon{
     font-size: 45px;
     margin-right: 22px;
     cursor: pointer;
@@ -42,8 +37,6 @@ header div ion-icon{
 
 /* ESTILIZAÇÃO DO CORPO DA PÁGINA */
 main{
-    width: 100vw;
-    height: calc(100vh - 160px);
     background-color: var(--fundo-main);
     margin-top: 80px;
     margin-bottom: 80px;
@@ -51,26 +44,25 @@ main{
 }
 
 main nav{
-    width: 100vw;
-    padding-top: 26px;
-    padding-bottom: 90px;
+    padding: 26px 0;
 }
 
 .mensagem-exibida{
-    width: 100%;
     min-height: 40px;
-    /* max-height: 63px; */
     border-radius: 2px;
     background-color: var(--header-footer);
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 4px;
+    margin-top: 10px;
     padding: 0 9px;
     font-size: 14px;
     font-weight: 400;
     line-height: 16px;
+    white-space: wrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .status{
@@ -80,10 +72,6 @@ main nav{
     background: rgba(255, 222, 222, 1);
 }
 
-.mensagem-exibida p{
-    width: 100%;
-    height: 100%;
-}
 .mensagem-exibida small{
     color: var(--tempo-objeto);
 }
@@ -142,9 +130,9 @@ footer div ion-icon{
 /* ESTILIZAÇÃO TELA DE PARTICIPANTES */
 .tela-participantes{
     width: 70vw;
-    height: 100vh;
+    height: 100%;
     z-index: 3;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     background-color: rgba(255, 255, 255, 1);
@@ -154,7 +142,6 @@ footer div ion-icon{
 .topo-participante{
     width: 259px;
     height: 84px;
-    /* background-color: #AAAAAA; */
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -207,7 +194,6 @@ footer div ion-icon{
 .topo-visibilidade{
     width: 259px;
     height: 66px;
-    /* background-color: #AAAAAA; */
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -295,7 +281,7 @@ footer div ion-icon{
     width: 100vw;
     height: 100vh;
     z-index: 5;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: var(--header-footer)
@@ -355,6 +341,11 @@ footer div ion-icon{
     cursor: pointer;
 }
 
+.usuarios-disponiveis{
+    height: 340px;
+    overflow-y: scroll;
+}
+
 /* CLASSES GERAIS DE MANIPULAÇÃO */
 .escondido{
     display: none;
@@ -364,4 +355,20 @@ footer div ion-icon{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.selecionado{
+    box-shadow: 0 0 0 1px rgba(50, 183, 47, 1);
+}
+
+.opacidade{
+    opacity: 0;
+}
+
+.todos-participantes.selecionado .opacidade{
+    opacity: 1;
+}
+
+.visibilidade-mensagem .mensagem.selecionado .opacidade{
+    opacity: 1;
 }
