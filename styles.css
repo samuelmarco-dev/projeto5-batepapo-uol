@@ -358,7 +358,7 @@ footer div ion-icon{
 }
 
 .selecionado{
-    box-shadow: 0 0 0 1px rgba(50, 183, 47, 1);
+    box-shadow: 0 0 1em rgba(50, 183, 47, 1);
 }
 
 .opacidade{

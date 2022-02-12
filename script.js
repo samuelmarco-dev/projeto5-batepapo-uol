@@ -47,17 +47,17 @@ function enviarNickname() {
     objectoOnline = objectoNickName;
 
     if (nomeDeUsuario === null || nomeDeUsuario === undefined) {
-        enviarNickname()
+        enviarNickname();
     }
 
     const urlEnviarNickname = "https://mock-api.driven.com.br/api/v4/uol/participants";
     axios.post(urlEnviarNickname, objectoNickName)
         .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             alert(`Seu nome de usuário no Bate-Papo UOL é ${nomeDeUsuario}`);
         })
         .catch((error) => {
-            console.log(error.response);
+            // console.log(error.response);
             alert("Insira outro nome de usuário, este nome não é válido ou já está em uso!");
             enviarNickname();
         })
@@ -69,17 +69,18 @@ function usuarioEstaOnline() {
         name: `${nomeDeUsuario}`
     };
     objectoOnline = objectoNickName;
+    
     const urlManterConexao = "https://mock-api.driven.com.br/api/v4/uol/status";
     axios.post(urlManterConexao, objectoOnline)
         .then((response) => {
-            console.log(response.data)
+            // console.log(response.data);
         })
         .catch((error) => {
-            console.log(error.response);
+            // console.log(error.response);
             alert("Você foi desconectado do Bate-Papo UOL por inatividade!");
             location.reload(true);
         })
-    console.log(nomeDeUsuario, objectoNickName);
+    // console.log(nomeDeUsuario, objectoNickName);
 }
 setTimeout(usuarioEstaOnline, 2000);
 
@@ -90,7 +91,7 @@ function buscarMensagens() {
     const urlBuscarMensagens = "https://mock-api.driven.com.br/api/v4/uol/messages";
     axios.get(urlBuscarMensagens)
         .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             renderizarMensagensNaTela(response.data);
         })
     // .catch((error)=>{
@@ -105,9 +106,6 @@ setInterval(buscarMensagens, 3000);
 
 function renderizarMensagensNaTela(mensagemAPI) {
     const areaDeMensagens = document.querySelector('main nav');
-    console.log(areaDeMensagens);
-    console.log(mensagemAPI.length);
-    console.log(nomeDeUsuario);
     areaDeMensagens.innerHTML = "";
 
     for (let index = 0; index < mensagemAPI.length; index++) {
@@ -144,7 +142,7 @@ function buscarParticipantesAtivos() {
     const urlParticipantesAtivos = 'https://mock-api.driven.com.br/api/v4/uol/participants';
     axios.get(urlParticipantesAtivos)
         .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             renderizarParticipantesAtivos(response.data);
         })
         // .catch((error) => {
@@ -163,7 +161,7 @@ function renderizarParticipantesAtivos(arrayDeParticipantes) {
     for (let index = 0; index < arrayDeParticipantes.length; index++) {
         const elementoRenderizado = arrayDeParticipantes[index]
         participantesDisponiveis.innerHTML += `
-<div class="todos-participantes" onclick="selecionarParticipante(this)">
+<div class="todos-participantes" onclick="selecionarParticipante(this)" data-identifier="participant">
             <div class="perfil-participantes flex">
                 <ion-icon name="people"></ion-icon>
                 <p>${elementoRenderizado.name}</p>
@@ -184,7 +182,6 @@ function enviarMensagemAPI() {
     const destinoDaMensagem = 'Todos';
     const tipoDaMensagem = 'message';
 
-    console.log(nomeDeUsuario, mensagemDigitada.value);
     const urlEnivarMensagem = "https://mock-api.driven.com.br/api/v4/uol/messages";
     objetoMensagemInput = {
         from: `${nomeDeUsuario}`,
@@ -192,7 +189,7 @@ function enviarMensagemAPI() {
         text: `${mensagemDigitada.value}`,
         type: `${tipoDaMensagem}`
     };
-    console.log(objetoMensagemInput);
+    
     axios.post(urlEnivarMensagem, objetoMensagemInput)
         .then((response) => {
             console.log(response.data);
