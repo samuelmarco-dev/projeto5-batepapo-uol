@@ -192,12 +192,11 @@ function enviarMensagemAPI() {
     
     axios.post(urlEnivarMensagem, objetoMensagemInput)
         .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             limparInputDoUsuario();
-            //  alert(objetoMensagemInput);
         })
         .catch((error) => {
-            console.log(error.response);
+            // console.log(error.response);
             if (objetoMensagemInput.text === "" || objetoMensagemInput.text === null) {
                 alert('O servidor não aceita o envio de mensagens vazias. Você será redirecionado para a tela inicial');
             }
