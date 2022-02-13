@@ -9,6 +9,11 @@ function entradarNaSala(elementoBotao) {
     entradaUsuario.classList.add('escondido');
 }
 
+function retornaPaginaInicial(){
+    const telaDeEntrada = document.querySelector('.tela-de-entrada');
+    telaDeEntrada.classList.remove('escondido');
+}
+
 function telaParticipantesAtivos() {
     const abaDeParticipantes = document.querySelector('.tela-participantes');
     abaDeParticipantes.classList.remove('escondido');
